@@ -1,57 +1,100 @@
-import React from 'react'
+import {
+  FaCalendarAlt,
+  FaClock,
+  FaMapMarkerAlt,
+  FaDollarSign,
+  FaUsers,
+  FaPhoneAlt,
+} from "react-icons/fa";
+import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import ippLogo from "../assets/i++24Logo.png";
 
-export default function EventExplain() {
+export default function EventExplain({
+  title,
+  description,
+  date,
+  time,
+  venue,
+  prize,
+  members,
+  contact,
+  registerLink,
+}) {
   return (
-    <>
-    <div className='flex flex-col bg-black mx-8'>
-      <div className='flex flex-row justify-center mx-10 items-center gap-16'>
-        <div className='border-2 basis-1/3 bg-slate-300 text-black h-[60vh] w-[25vw]'>
-        <div className=' flex flex-col justify-center items-center text-6xl'>
-            <div>Hackthon</div>
-            <div>Details</div>
-        </div>
-        </div>
-        <div className='flex flex-col border-2 basis-2/3 bg-neutral-700 border-neutral-700 rounded-3xl text-black h-[60vh] w-[50vw]'>
-            <div className='mx-7 my-4 text-3xl text-teal-400'>
-            A Collaborative event where participants work in teams to solve real-world challenges,
-             focusing on Inclusion and innovation. It encourages creativity and technological innovation, 
-             providing a platform for individuals to work collectively on devising innovative solutions within
-              a limited timeframe. It will be conducted in 2 rounds - Round 1 is online idea submission. Round 
-              2 is a 12 hour offline hackathon.
-
+    <Dialog>
+     
+       
+          <DialogTrigger asChild >
+            <div className="flex flex-col justify-center items-center cursor-pointer sm:w-3/12 max-w-[90%] bg-gray-500 rounded-lg p-3">
+              <img src={ippLogo} alt="event" width={300} height={350}/>
+              <div>
+              <p className="text-xl w-full text-center">{title}</p>
+              </div>
             </div>
-            <div className='flex flex-row justify-center gap-4'>
-                <div>
-                    <div className='text-2xl text-rose-400'>
-                        Date:<span className='text-2xl text-fuchsia-500'>26/10/2024</span>
-                    </div>
-                    <div className='text-2xl text-rose-400'>
-                        Venue:<span className='text-2xl text-fuchsia-500'>IT department, 2 floor lab</span>
-                    </div>
+          </DialogTrigger>
+  
 
-                    <div className='text-2xl text-rose-400'>
-                        Timings:<span className='text-2xl text-fuchsia-500'>9:00AM - 10:30AM</span>
-                    </div>
+        <DialogContent className=' bg-gray-900 '>
+          <div className="flex flex-col border-2 rounded-3xl text-black p-7">
+            <div className="text-2xl text-teal-400 mb-4">{description}</div>
+            <div className="flex flex-row justify-center gap-8">
+              <div>
+                <div className="flex items-center space-x-4 text-xl text-blue-500 mb-2">
+                  <FaCalendarAlt />
+                  <span className="text-white">{date}</span>
                 </div>
-                <div>
-                    <div className='text-2xl text-rose-400'>
-                        Team size:<span className='text-2xl text-fuchsia-500'>2 Members</span>
-                    </div>
 
-                    <div className='text-2xl text-rose-400'>
-                        Price pool:<span className='text-2xl text-fuchsia-500'>3K</span>
-                    </div>
+                <div className="flex items-center space-x-4 text-xl text-blue-500 mb-2">
+                  <FaMapMarkerAlt />
+                  <span className="text-white">{venue}</span>
+                </div>
 
-                    <div className='text-2xl text-rose-400'>
-                        POC:<span className='text-2xl text-fuchsia-500'>event deptuy - 0976548976</span>
-                    </div>
-                    </div>
-                
+                <div className="flex items-center space-x-4 text-xl text-blue-500 mb-2">
+                  <FaClock />
+                  <span className="text-white">{time}</span>
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center space-x-4 text-xl text-blue-500 mb-2">
+                  <FaUsers />
+                  <span className="text-white">{members}</span>
+                </div>
+
+                <div className="flex items-center space-x-4 text-xl text-blue-500 mb-2">
+                  <FaDollarSign />
+                  <span className="text-white">{prize}</span>
+                </div>
+
+                <div className="flex items-center space-x-4 text-xl text-blue-500 mb-2">
+                  <FaPhoneAlt />
+                  <span className="text-white">
+                    {contact?.name} - {contact?.phone}
+                  </span>
+                </div>
+              </div>
             </div>
-        </div>
-        
-      </div>
-      </div>
-    </>
-  )
+            {registerLink && (
+              <div className="mt-4 text-center">
+                <a
+                  href={registerLink}
+                  className="text-lg text-blue-500 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Register Here
+                </a>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      
+    </Dialog>
+  );
 }
